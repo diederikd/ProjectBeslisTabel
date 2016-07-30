@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info>
+  <concept fqn="jetbrains.mps.baseLanguage.structure.BlockStatement" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.ConstructorDeclaration" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.ExpressionStatement" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.IfStatement" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.InstanceMethodDeclaration" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.ReturnStatement" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.SuperConstructorInvocation" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.SwitchStatement" />
+  <concept fqn="jetbrains.mps.baseLanguage.structure.ThrowStatement" />
+  <root>
+    <file name="AbstracteActie_BehaviorDescriptor.java">
+      <unit at="14,0,26,0" name="RegelTaal.behavior.AbstracteActie_BehaviorDescriptor" />
+    </file>
+    <file name="AbstracteModaliteit_BehaviorDescriptor.java">
+      <unit at="12,0,21,0" name="RegelTaal.behavior.AbstracteModaliteit_BehaviorDescriptor" />
+    </file>
+    <file name="AbstracteOperand_BehaviorDescriptor.java">
+      <unit at="12,0,21,0" name="RegelTaal.behavior.AbstracteOperand_BehaviorDescriptor" />
+    </file>
+    <file name="AbstracteOperator_BehaviorDescriptor.java">
+      <unit at="12,0,21,0" name="RegelTaal.behavior.AbstracteOperator_BehaviorDescriptor" />
+    </file>
+    <file name="AbstracteVoorwaarde_BehaviorDescriptor.java">
+      <unit at="12,0,21,0" name="RegelTaal.behavior.AbstracteVoorwaarde_BehaviorDescriptor" />
+    </file>
+    <file name="ActieReferentie_BehaviorDescriptor.java">
+      <unit at="11,0,20,0" name="RegelTaal.behavior.ActieReferentie_BehaviorDescriptor" />
+    </file>
+    <file name="Actie_BehaviorDescriptor.java">
+      <unit at="12,0,21,0" name="RegelTaal.behavior.Actie_BehaviorDescriptor" />
+    </file>
+    <file name="BehaviorAspectDescriptor.java">
+      <unit at="14,0,42,0" name="RegelTaal.behavior.BehaviorAspectDescriptor" />
+    </file>
+    <file name="IsNietWaar_BehaviorDescriptor.java">
+      <unit at="11,0,20,0" name="RegelTaal.behavior.IsNietWaar_BehaviorDescriptor" />
+    </file>
+    <file name="IsWaar_BehaviorDescriptor.java">
+      <unit at="11,0,20,0" name="RegelTaal.behavior.IsWaar_BehaviorDescriptor" />
+    </file>
+    <file name="MagNiet_BehaviorDescriptor.java">
+      <unit at="11,0,20,0" name="RegelTaal.behavior.MagNiet_BehaviorDescriptor" />
+    </file>
+    <file name="Moet_BehaviorDescriptor.java">
+      <unit at="11,0,20,0" name="RegelTaal.behavior.Moet_BehaviorDescriptor" />
+    </file>
+    <file name="OperandReferentie_BehaviorDescriptor.java">
+      <unit at="11,0,20,0" name="RegelTaal.behavior.OperandReferentie_BehaviorDescriptor" />
+    </file>
+    <file name="Operand_BehaviorDescriptor.java">
+      <unit at="13,0,25,0" name="RegelTaal.behavior.Operand_BehaviorDescriptor" />
+    </file>
+    <file name="Regel_BehaviorDescriptor.java">
+      <unit at="14,0,26,0" name="RegelTaal.behavior.Regel_BehaviorDescriptor" />
+    </file>
+    <file name="Regelgroep_BehaviorDescriptor.java">
+      <unit at="14,0,26,0" name="RegelTaal.behavior.Regelgroep_BehaviorDescriptor" />
+    </file>
+    <file name="VoorwaardeReferentie_BehaviorDescriptor.java">
+      <unit at="11,0,20,0" name="RegelTaal.behavior.VoorwaardeReferentie_BehaviorDescriptor" />
+    </file>
+    <file name="Voorwaarde_BehaviorDescriptor.java">
+      <unit at="13,0,25,0" name="RegelTaal.behavior.Voorwaarde_BehaviorDescriptor" />
+    </file>
+  </root>
+  <root nodeRef="r:81a4e6a9-2ac4-4cf6-8d05-1f620f2dd182(RegelTaal.behavior)/6655185614570722468">
+    <file name="Voorwaarde_Behavior.java">
+      <node id="6655185614570722468" at="15,79,16,75" concept="2" />
+      <node id="6655185614570722468" at="18,117,19,97" concept="2" />
+      <node id="6655185614570722468" at="21,132,22,102" concept="6" />
+      <node id="6655185614570722468" at="15,0,18,0" concept="8" trace="call_refreshname_6655185614570722471#(Lorg/jetbrains/mps/openapi/model/SNode;)V" />
+      <node id="6655185614570722468" at="18,0,21,0" concept="8" trace="call_SetEditorContext_6655185614570814871#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/openapi/editor/EditorComponent;)V" />
+      <node id="6655185614570722468" at="21,0,24,0" concept="8" trace="call_createListener_8794515008209972274#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/openapi/editor/EditorComponent;)Ljetbrains/mps/openapi/editor/update/UpdaterListener;" />
+      <scope id="6655185614570722468" at="15,79,16,75" />
+      <scope id="6655185614570722468" at="18,117,19,97" />
+      <scope id="6655185614570722468" at="21,132,22,102" />
+      <scope id="6655185614570722468" at="15,0,18,0">
+        <var name="__thisNode__" id="6655185614570722468" />
+      </scope>
+      <scope id="6655185614570722468" at="18,0,21,0">
+        <var name="__thisNode__" id="6655185614570722468" />
+        <var name="editorComponent" id="6655185614570847644" />
+      </scope>
+      <scope id="6655185614570722468" at="21,0,24,0">
+        <var name="__thisNode__" id="6655185614570722468" />
+        <var name="editorComponent" id="8794515008209972471" />
+      </scope>
+      <unit id="6655185614570722468" at="13,0,25,0" name="RegelTaal.behavior.Voorwaarde_Behavior" />
+    </file>
+    <file name="Voorwaarde__BehaviorDescriptor.java">
+      <node id="6655185614570722468" at="30,0,31,0" concept="7" trace="CONCEPT" />
+      <node id="6655185614570722468" at="31,0,32,0" concept="7" trace="REGISTRY" />
+      <node id="6655185614570722468" at="33,0,34,0" concept="7" trace="refreshname_id5LrY0T6LLiB" />
+      <node id="6655185614570722468" at="34,0,35,0" concept="7" trace="SetEditorContext_id5LrY0T6M7Qn" />
+      <node id="6655185614570722468" at="35,0,36,0" concept="7" trace="createListener_id7CcpcRWcAKM" />
+      <node id="6655185614570722468" at="37,0,38,0" concept="7" trace="BH_METHODS" />
+      <node id="6655185614570730440" at="42,82,43,28" concept="5" />
+      <node id="6655185614570730698" at="43,28,44,29" concept="5" />
+      <node id="6655185614570729420" at="46,7,47,198" concept="5" />
+      <node id="6655185614570730844" at="48,171,49,171" concept="2" />
+      <node id="6655185614570734844" at="52,7,53,199" concept="5" />
+      <node id="6655185614570735820" at="54,182,55,331" concept="2" />
+      <node id="6655185614570741862" at="60,7,61,200" concept="5" />
+      <node id="6655185614570744189" at="62,175,63,41" concept="2" />
+      <node id="6655185614570745040" at="66,7,67,200" concept="5" />
+      <node id="6655185614570745045" at="68,171,69,36" concept="2" />
+      <node id="6655185614570722511" at="72,5,73,184" concept="2" />
+      <node id="7152909203783009907" at="75,120,76,129" concept="5" />
+      <node id="6655185614570904237" at="76,129,77,55" concept="2" />
+      <node id="7152909203783016745" at="79,135,80,37" concept="5" />
+      <node id="6655185614571007144" at="82,60,83,79" concept="2" />
+      <node id="6655185614571007707" at="85,78,86,79" concept="2" />
+      <node id="6655185614571059151" at="88,60,89,79" concept="2" />
+      <node id="6655185614570722468" at="94,48,95,20" concept="9" />
+      <node id="6655185614570722468" at="99,114,100,21" concept="2" />
+      <node id="6655185614570722468" at="104,114,105,49" concept="5" />
+      <node id="6655185614570722468" at="106,26,107,56" concept="11" />
+      <node id="6655185614570722468" at="110,13,111,40" concept="2" />
+      <node id="6655185614570722468" at="111,40,112,20" concept="6" />
+      <node id="6655185614570722468" at="113,13,114,78" concept="2" />
+      <node id="6655185614570722468" at="114,78,115,20" concept="6" />
+      <node id="6655185614570722468" at="116,13,117,107" concept="6" />
+      <node id="6655185614570722468" at="118,14,119,58" concept="11" />
+      <node id="6655185614570722468" at="124,128,125,49" concept="5" />
+      <node id="6655185614570722468" at="126,26,127,56" concept="11" />
+      <node id="6655185614570722468" at="130,14,131,58" concept="11" />
+      <node id="6655185614570722468" at="137,48,138,22" concept="6" />
+      <node id="6655185614570722468" at="143,40,144,19" concept="6" />
+      <node id="6655185614570722468" at="39,0,41,0" concept="8" trace="___init___#(Lorg/jetbrains/mps/openapi/model/SNode;)V" />
+      <node id="6655185614570729420" at="47,198,50,9" concept="3" />
+      <node id="6655185614570734844" at="53,199,56,9" concept="3" />
+      <node id="6655185614570741862" at="61,200,64,9" concept="3" />
+      <node id="6655185614570745040" at="67,200,70,9" concept="3" />
+      <node id="6655185614571006609" at="82,0,85,0" concept="4" trace="cellSynchronizedWithModel#(Ljetbrains/mps/openapi/editor/cells/EditorCell;)V" />
+      <node id="6655185614571006617" at="85,0,88,0" concept="4" trace="editorUpdated#(Ljetbrains/mps/nodeEditor/EditorComponent;)V" />
+      <node id="6655185614571058889" at="88,0,91,0" concept="4" trace="editorUpdated#(Ljetbrains/mps/openapi/editor/EditorComponent;)V" />
+      <node id="6655185614570722468" at="94,0,97,0" concept="1" trace="Voorwaarde__BehaviorDescriptor#()V" />
+      <node id="6655185614570722468" at="105,49,108,5" concept="3" />
+      <node id="6655185614570722468" at="125,49,128,5" concept="3" />
+      <node id="6655185614570722468" at="75,0,79,0" concept="8" trace="SetEditorContext_id5LrY0T6M7Qn#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/openapi/editor/EditorComponent;)V" />
+      <node id="6655185614570722468" at="98,0,102,0" concept="4" trace="initNode#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/core/aspects/behaviour/api/SConstructor;[Ljava/lang/Object;)V" />
+      <node id="6655185614570722468" at="128,5,132,5" concept="10" />
+      <node id="6655185614570722468" at="135,0,140,0" concept="4" trace="getDeclaredMethods#()Ljava/util/List;" />
+      <node id="6655185614570722468" at="141,0,146,0" concept="4" trace="getConcept#()Lorg/jetbrains/mps/openapi/language/SAbstractConcept;" />
+      <node id="6655185614570729420" at="45,194,51,7" concept="0" />
+      <node id="6655185614570734844" at="51,7,57,7" concept="0" />
+      <node id="6655185614570741862" at="59,195,65,7" concept="0" />
+      <node id="6655185614570745040" at="65,7,71,7" concept="0" />
+      <node id="6655185614570914631" at="80,37,91,6" concept="6" />
+      <node id="6655185614570722468" at="123,0,134,0" concept="4" trace="invokeSpecial0#(Lorg/jetbrains/mps/openapi/language/SAbstractConcept;Ljetbrains/mps/core/aspects/behaviour/api/SMethod;[Ljava/lang/Object;)null" />
+      <node id="6655185614570722468" at="108,5,120,5" concept="10" />
+      <node id="6655185614570727749" at="44,29,58,5" concept="3" />
+      <node id="6655185614570738047" at="58,5,72,5" concept="3" />
+      <node id="6655185614570722468" at="79,0,93,0" concept="8" trace="createListener_id7CcpcRWcAKM#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/openapi/editor/EditorComponent;)Ljetbrains/mps/openapi/editor/update/UpdaterListener;" />
+      <node id="6655185614570722468" at="103,0,122,0" concept="4" trace="invokeSpecial0#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/core/aspects/behaviour/api/SMethod;[Ljava/lang/Object;)null" />
+      <node id="6655185614570722468" at="42,0,75,0" concept="8" trace="refreshname_id5LrY0T6LLiB#(Lorg/jetbrains/mps/openapi/model/SNode;)V" />
+      <scope id="6655185614570722468" at="39,63,39,63" />
+      <scope id="6655185614570729424" at="48,171,49,171" />
+      <scope id="6655185614570734848" at="54,182,55,331" />
+      <scope id="6655185614570741866" at="62,175,63,41" />
+      <scope id="6655185614570745044" at="68,171,69,36" />
+      <scope id="6655185614571006615" at="82,60,83,79" />
+      <scope id="6655185614571006623" at="85,78,86,79" />
+      <scope id="6655185614571058896" at="88,60,89,79" />
+      <scope id="6655185614570722468" at="94,48,95,20" />
+      <scope id="6655185614570722468" at="99,114,100,21" />
+      <scope id="6655185614570722468" at="106,26,107,56" />
+      <scope id="6655185614570722468" at="116,13,117,107" />
+      <scope id="6655185614570722468" at="118,14,119,58" />
+      <scope id="6655185614570722468" at="126,26,127,56" />
+      <scope id="6655185614570722468" at="130,14,131,58" />
+      <scope id="6655185614570722468" at="137,48,138,22" />
+      <scope id="6655185614570722468" at="143,40,144,19" />
+      <scope id="6655185614570722468" at="39,0,41,0">
+        <var name="__thisNode__" id="6655185614570722468" />
+      </scope>
+      <scope id="6655185614570814874" at="75,120,77,55">
+        <var name="listener" id="7152909203783009903" />
+      </scope>
+      <scope id="6655185614570722468" at="110,13,112,20" />
+      <scope id="6655185614570722468" at="113,13,115,20" />
+      <scope id="6655185614571006609" at="82,0,85,0">
+        <var name="p0" id="6655185614571006613" />
+      </scope>
+      <scope id="6655185614571006617" at="85,0,88,0">
+        <var name="p0" id="6655185614571006621" />
+      </scope>
+      <scope id="6655185614571058889" at="88,0,91,0">
+        <var name="component" id="6655185614571058893" />
+      </scope>
+      <scope id="6655185614570722468" at="94,0,97,0" />
+      <scope id="6655185614570729420" at="46,7,50,9">
+        <var name="o" id="6655185614570729420" />
+      </scope>
+      <scope id="6655185614570734844" at="52,7,56,9">
+        <var name="or" id="6655185614570734844" />
+      </scope>
+      <scope id="6655185614570741862" at="60,7,64,9">
+        <var name="op" id="6655185614570741862" />
+      </scope>
+      <scope id="6655185614570745040" at="66,7,70,9">
+        <var name="op" id="6655185614570745040" />
+      </scope>
+      <scope id="6655185614570722468" at="75,0,79,0">
+        <var name="__thisNode__" id="6655185614570722468" />
+        <var name="editorComponent" id="6655185614570847644" />
+      </scope>
+      <scope id="6655185614570722468" at="98,0,102,0">
+        <var name="constructor" id="6655185614570722468" />
+        <var name="node" id="6655185614570722468" />
+        <var name="parameters" id="6655185614570722468" />
+      </scope>
+      <scope id="6655185614570722468" at="135,0,140,0" />
+      <scope id="6655185614570722468" at="141,0,146,0" />
+      <scope id="6655185614570722468" at="124,128,132,5">
+        <var name="methodIndex" id="6655185614570722468" />
+      </scope>
+      <scope id="6655185614570722468" at="123,0,134,0">
+        <var name="concept" id="6655185614570722468" />
+        <var name="method" id="6655185614570722468" />
+        <var name="parameters" id="6655185614570722468" />
+      </scope>
+      <scope id="6655185614570727751" at="45,194,57,7" />
+      <scope id="6655185614570738049" at="59,195,71,7" />
+      <scope id="8794515008209972276" at="79,135,91,6">
+        <var name="_this" id="7152909203783016741" />
+      </scope>
+      <scope id="6655185614570722468" at="79,0,93,0">
+        <var name="__thisNode__" id="6655185614570722468" />
+        <var name="editorComponent" id="8794515008209972471" />
+      </scope>
+      <scope id="6655185614570722468" at="104,114,120,5">
+        <var name="methodIndex" id="6655185614570722468" />
+      </scope>
+      <scope id="6655185614570722468" at="103,0,122,0">
+        <var name="method" id="6655185614570722468" />
+        <var name="node" id="6655185614570722468" />
+        <var name="parameters" id="6655185614570722468" />
+      </scope>
+      <scope id="6655185614570722474" at="42,82,73,184">
+        <var name="OperandName" id="6655185614570730436" />
+        <var name="OperatorName" id="6655185614570730694" />
+      </scope>
+      <scope id="6655185614570722468" at="42,0,75,0">
+        <var name="__thisNode__" id="6655185614570722468" />
+      </scope>
+      <unit id="6655185614571006607" at="81,15,91,5" name="RegelTaal.behavior.Voorwaarde__BehaviorDescriptor$1" />
+      <unit id="6655185614570722468" at="29,0,147,0" name="RegelTaal.behavior.Voorwaarde__BehaviorDescriptor" />
+    </file>
+  </root>
+</debug-info>
+

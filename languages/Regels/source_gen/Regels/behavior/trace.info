@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<debug-info>
+  <root>
+    <file name="AbstracteActie_BehaviorDescriptor.java">
+      <unit at="12,0,21,0" name="Regels.behavior.AbstracteActie_BehaviorDescriptor" />
+    </file>
+    <file name="AbstracteVoorwaarde_BehaviorDescriptor.java">
+      <unit at="12,0,21,0" name="Regels.behavior.AbstracteVoorwaarde_BehaviorDescriptor" />
+    </file>
+    <file name="ActieReferentie_BehaviorDescriptor.java">
+      <unit at="12,0,21,0" name="Regels.behavior.ActieReferentie_BehaviorDescriptor" />
+    </file>
+    <file name="Actie_BehaviorDescriptor.java">
+      <unit at="13,0,25,0" name="Regels.behavior.Actie_BehaviorDescriptor" />
+    </file>
+    <file name="Regel_BehaviorDescriptor.java">
+      <unit at="12,0,21,0" name="Regels.behavior.Regel_BehaviorDescriptor" />
+    </file>
+    <file name="VoorwaardeReferentie_BehaviorDescriptor.java">
+      <unit at="12,0,21,0" name="Regels.behavior.VoorwaardeReferentie_BehaviorDescriptor" />
+    </file>
+    <file name="Voorwaarde_BehaviorDescriptor.java">
+      <unit at="14,0,26,0" name="Regels.behavior.Voorwaarde_BehaviorDescriptor" />
+    </file>
+  </root>
+</debug-info>
+
