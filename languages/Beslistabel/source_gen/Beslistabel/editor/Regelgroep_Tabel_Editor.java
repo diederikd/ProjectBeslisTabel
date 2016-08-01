@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import org.apache.log4j.Level;
 import org.jetbrains.mps.openapi.language.SAbstractConcept;
+import jetbrains.mps.internal.collections.runtime.IWhereFilter;
+import jetbrains.mps.internal.collections.runtime.ISelector;
 import jetbrains.mps.lang.editor.table.runtime.EditorCell_Table;
 import org.apache.log4j.Logger;
 import org.apache.log4j.LogManager;
@@ -110,33 +112,25 @@ public class Regelgroep_Tabel_Editor extends DefaultNodeEditor {
           }
           @Override
           public int getRowCount() {
-            Integer numberOfRegels = ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).count();
             Integer rcVoorwaarden = ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).count() + Sequence.fromIterable(SNodeOperations.ofConcept(ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).translate(new ITranslator2<SNode, SNode>() {
               public Iterable<SNode> translate(SNode it) {
                 return SLinkOperations.getChildren(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbaL, 0x7b09cf0db9d86bc9L, "voorwaarden"));
               }
             }), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, "RegelTaal.structure.Voorwaarde"))).count() + 1;
 
-            Integer rcOperands;
-            List<SNode> operands = new ArrayList<SNode>();
+            Integer numberOfOperands;
+            List<SNode> rcOperands = new ArrayList<SNode>();
             for (SNode regel : ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels")))) {
               for (SNode voorwaarde : Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(regel, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbaL, 0x7b09cf0db9d86bc9L, "voorwaarden")), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, "RegelTaal.structure.Voorwaarde")))) {
                 SNode operand = (SNode) SLinkOperations.getTarget(voorwaarde, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand"));
-                if (!(ListSequence.fromList(operands).contains(operand)) && operand != null && SPropertyOperations.getString(operand, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name")) != null) {
-                  ListSequence.fromList(operands).addElement(operand);
+                if (!(ListSequence.fromList(rcOperands).contains(operand)) && operand != null && SPropertyOperations.getString(operand, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name")) != null) {
+                  ListSequence.fromList(rcOperands).addElement(operand);
                 }
               }
             }
 
-            rcOperands = ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).count() + ListSequence.fromList(operands).count() + 1;
-            if (LOG.isEnabledFor(Level.WARN)) {
-              LOG.warn("rowcount operands " + rcOperands.toString());
-            }
-            if (LOG.isEnabledFor(Level.WARN)) {
-              LOG.warn("rowcount voorwaarden " + rcVoorwaarden.toString());
-            }
-
-            return rcVoorwaarden;
+            numberOfOperands = ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).count() + ListSequence.fromList(rcOperands).count() + 1;
+            return numberOfOperands;
           }
           @Override
           public SNode getValueAt(int row, int column) {
@@ -145,6 +139,7 @@ public class Regelgroep_Tabel_Editor extends DefaultNodeEditor {
             if (LOG.isEnabledFor(Level.WARN)) {
               LOG.warn("Row " + r.toString() + " and column " + c.toString());
             }
+
             List<SNode> regels = SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"));
             List<SNode> voorwaarden = new ArrayList<SNode>();
             for (SNode regel : ListSequence.fromList(regels)) {
@@ -163,37 +158,117 @@ public class Regelgroep_Tabel_Editor extends DefaultNodeEditor {
               }
             }
 
-
+            // Eerste rij 
             if (row == 0 && column > 0) {
               return ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).getElement(column - 1);
             }
+
+            // Vulling van de tabel 
             if (row > 0 && column > 0) {
+
+              // Het vullen van de tabel voor wat betreft de acties 
               if (row > 0 && (row > ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).count())) {
-                if ((column - 1) == row - ListSequence.fromList(voorwaarden).count() - 1) {
-                  return SLinkOperations.getTarget(ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).getElement(row - ListSequence.fromList(voorwaarden).count() - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbaL, 0x1878635738437caaL, "modaliteit"));
+                if ((column - 1) == row - ListSequence.fromList(operands).count() - 1) {
+                  return SLinkOperations.getTarget(ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).getElement(row - ListSequence.fromList(operands).count() - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbaL, 0x1878635738437caaL, "modaliteit"));
                 }
               }
-              if (row > 0 && (row <= ListSequence.fromList(voorwaarden).count())) {
-                List<SNode> referentievoorwaarden = new ArrayList<SNode>();
+
+              // Het vullen van de tabel voor wat betreft de voorwaarden 
+
+              // Het vullen van de tabel voor wat betreft de operanden 
+              if (row > 0 && (row <= ListSequence.fromList(operands).count())) {
+
+                List<SNode> referentievoorwaardenList = new ArrayList<SNode>();
                 for (SNode voorwaardeReferentie : ListSequence.fromList(SNodeOperations.getNodeDescendants(ListSequence.fromList(regels).getElement(column - 1), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, "RegelTaal.structure.VoorwaardeReferentie"), false, new SAbstractConcept[]{}))) {
                   if (LOG.isEnabledFor(Level.WARN)) {
-                    LOG.warn(SPropertyOperations.getString(SLinkOperations.getTarget(voorwaardeReferentie, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, 0x7b09cf0db9d86bbeL, "voorwaarde")), MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name")) + " ref");
+                    LOG.warn("Referentie voorwaarde " + SPropertyOperations.getString(SLinkOperations.getTarget(voorwaardeReferentie, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, 0x7b09cf0db9d86bbeL, "voorwaarde")), MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name")));
                   }
-                  ListSequence.fromList(referentievoorwaarden).addElement(SLinkOperations.getTarget(voorwaardeReferentie, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, 0x7b09cf0db9d86bbeL, "voorwaarde")));
+                  ListSequence.fromList(referentievoorwaardenList).addElement(SLinkOperations.getTarget(voorwaardeReferentie, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, 0x7b09cf0db9d86bbeL, "voorwaarde")));
                 }
-                if (ListSequence.fromList(referentievoorwaarden).contains(ListSequence.fromList(voorwaarden).getElement(row - 1))) {
+                // Betreft een referentievoorwaarde en een gewone operand 
+                if (ListSequence.fromList(referentievoorwaardenList).where(new IWhereFilter<SNode>() {
+                  public boolean accept(SNode it) {
+                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand")) != null);
+                  }
+                }).select(new ISelector<SNode, SNode>() {
+                  public SNode select(SNode it) {
+                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand"));
+                  }
+                }).contains(ListSequence.fromList(operands).getElement(row - 1))) {
                   return SLinkOperations.getTarget(ListSequence.fromList(voorwaarden).getElement(row - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
                 }
-                if (ListSequence.fromList(SLinkOperations.getChildren(ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).getElement(column - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbaL, 0x7b09cf0db9d86bc9L, "voorwaarden"))).contains(ListSequence.fromList(voorwaarden).getElement(row - 1))) {
+                // Betreft een referentievoorwaarde en een referentie operand 
+                if (Sequence.fromIterable(SNodeOperations.ofConcept(ListSequence.fromList(referentievoorwaardenList).where(new IWhereFilter<SNode>() {
+                  public boolean accept(SNode it) {
+                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand")) != null);
+                  }
+                }).select(new ISelector<SNode, SNode>() {
+                  public SNode select(SNode it) {
+                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand"));
+                  }
+                }), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, "RegelTaal.structure.OperandReferentie"))).where(new IWhereFilter<SNode>() {
+                  public boolean accept(SNode it) {
+                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, 0x5c5bf80e46c3b9e8L, "operand")) != null);
+                  }
+                }).select(new ISelector<SNode, SNode>() {
+                  public SNode select(SNode it) {
+                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, 0x5c5bf80e46c3b9e8L, "operand"));
+                  }
+                }).contains(ListSequence.fromList(operands).getElement(row - 1))) {
                   return SLinkOperations.getTarget(ListSequence.fromList(voorwaarden).getElement(row - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
                 }
+                List<SNode> voorwaardenList = new ArrayList<SNode>();
+                for (SNode voorwaarde : ListSequence.fromList(SNodeOperations.getNodeDescendants(ListSequence.fromList(regels).getElement(column - 1), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, "RegelTaal.structure.Voorwaarde"), false, new SAbstractConcept[]{}))) {
+                  if (LOG.isEnabledFor(Level.WARN)) {
+                    LOG.warn("Voorwaarde " + SPropertyOperations.getString(voorwaarde, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name")));
+                  }
+                  ListSequence.fromList(voorwaardenList).addElement(voorwaarde);
+                }
+                // Betreft een gewone voorwaarde en een gewone operand 
+                if (ListSequence.fromList(voorwaardenList).where(new IWhereFilter<SNode>() {
+                  public boolean accept(SNode it) {
+                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand")) != null);
+                  }
+                }).select(new ISelector<SNode, SNode>() {
+                  public SNode select(SNode it) {
+                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand"));
+                  }
+                }).contains(ListSequence.fromList(operands).getElement(row - 1))) {
+                  return SLinkOperations.getTarget(ListSequence.fromList(voorwaarden).getElement(row - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
+                }
+                // Betreft een gewone voorwaarde en een referentie operand 
+                if (Sequence.fromIterable(SNodeOperations.ofConcept(ListSequence.fromList(voorwaardenList).where(new IWhereFilter<SNode>() {
+                  public boolean accept(SNode it) {
+                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand")) != null);
+                  }
+                }).select(new ISelector<SNode, SNode>() {
+                  public SNode select(SNode it) {
+                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand"));
+                  }
+                }), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, "RegelTaal.structure.OperandReferentie"))).where(new IWhereFilter<SNode>() {
+                  public boolean accept(SNode it) {
+                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, 0x5c5bf80e46c3b9e8L, "operand")) != null);
+                  }
+                }).select(new ISelector<SNode, SNode>() {
+                  public SNode select(SNode it) {
+                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, 0x5c5bf80e46c3b9e8L, "operand"));
+                  }
+                }).contains(ListSequence.fromList(operands).getElement(row - 1))) {
+                  return SLinkOperations.getTarget(ListSequence.fromList(voorwaarden).getElement(row - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
+                }
+
               }
             }
-            if (column == 0 && row > 0 && (row <= ListSequence.fromList(voorwaarden).count())) {
-              return SLinkOperations.getTarget(ListSequence.fromList(voorwaarden).getElement(row - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand"));
+
+            // Bovenste items in eerste kolom bevatten de operanden 
+            if (column == 0 && row > 0 && (row <= ListSequence.fromList(operands).count())) {
+              return ListSequence.fromList(operands).getElement(row - 1);
             }
-            if (column == 0 && row > 0 && (row > ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).count())) {
-              return SLinkOperations.getTarget(ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).getElement(row - ListSequence.fromList(voorwaarden).count() - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbaL, 0x7b09cf0db9d86bc7L, "actie"));
+
+
+            // Onderste items in de eerste kolom bevatten de acties 
+            if (column == 0 && row > 0 && (row > ListSequence.fromList(operands).count())) {
+              return SLinkOperations.getTarget(ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).getElement(row - ListSequence.fromList(operands).count() - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbaL, 0x7b09cf0db9d86bc7L, "actie"));
             }
             return null;
           }

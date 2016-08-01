@@ -195,6 +195,9 @@
   <node concept="24kQdi" id="5EuS6Mu_ypj">
     <ref role="1XX52x" to="iry:7G9NKQTQ6IV" resolve="Voorwaarde" />
     <node concept="3EZMnI" id="5EuS6Mu_ypl" role="2wV5jI">
+      <node concept="3F0ifn" id="1z3Mm5skOel" role="3EZMnx">
+        <property role="3F0ifm" value="-" />
+      </node>
       <node concept="l2Vlx" id="5EuS6Mu_ypm" role="2iSdaV" />
       <node concept="3F1sOY" id="5LrY0T6KVBx" role="3EZMnx">
         <ref role="1NtTu8" to="iry:5LrY0T6KVBp" />

@@ -49,16 +49,19 @@
   </registry>
   <node concept="342NBM" id="5EuS6MuA9kc">
     <property role="TrG5h" value="Beslissing1" />
-    <property role="3422Yz" value="Tabel" />
+    <property role="3422Yz" value="Regels" />
     <node concept="341IrB" id="5EuS6MuA9kd" role="341IvS">
       <property role="TrG5h" value="Printer problemen oplossen" />
       <node concept="32OqiR" id="5EuS6MuA3R9" role="341Irw">
-        <property role="TrG5h" value="Regel2" />
+        <property role="TrG5h" value="Regel1" />
         <node concept="32Oqjc" id="5EuS6MuHKO9" role="32Oqja">
           <property role="TrG5h" value="Controleer de kabel tussen de computer en printer" />
           <property role="wewom" value="yes" />
         </node>
         <node concept="weLWk" id="5LrY0T6KF2s" role="weLZX" />
+        <node concept="32OqiK" id="1z3Mm5skRIw" role="32Oqj4">
+          <ref role="32OqiN" node="3rbMb2ff2_g" resolve="Printer geeft de melding inkt is op is waar" />
+        </node>
         <node concept="32OqiQ" id="5LrY0T6LKaG" role="32Oqj4">
           <property role="TrG5h" value="Lampje knippert is waar" />
           <node concept="qA47D" id="5LrY0T6LKaM" role="qA47n">
@@ -66,9 +69,12 @@
           </node>
           <node concept="wf7uK" id="5LrY0T6LKaP" role="wf7ot" />
         </node>
+        <node concept="32OqiK" id="1z3Mm5skOb1" role="32Oqj4">
+          <ref role="32OqiN" node="5EuS6MuJePt" resolve="Computer kan de printer niet vinden is waar" />
+        </node>
       </node>
       <node concept="32OqiR" id="5EuS6MuA3R6" role="341Irw">
-        <property role="TrG5h" value="Regel1" />
+        <property role="TrG5h" value="Regel2" />
         <node concept="32OqiQ" id="5EuS6MuJePg" role="32Oqj4">
           <property role="TrG5h" value="Lampje knippert is niet waar" />
           <node concept="wf7pd" id="5LrY0T6KF2p" role="wf7ot" />
@@ -98,6 +104,27 @@
           <property role="TrG5h" value="Controleer de papier doorvoer" />
         </node>
         <node concept="weLWk" id="5LrY0T6KF2P" role="weLZX" />
+      </node>
+      <node concept="32OqiR" id="3rbMb2ff2zX" role="341Irw">
+        <property role="TrG5h" value="Regel4" />
+        <node concept="32OqiQ" id="3rbMb2ff2_g" role="32Oqj4">
+          <property role="TrG5h" value="Printer geeft de melding inkt is op is waar" />
+          <node concept="qAkyR" id="3rbMb2ff2_p" role="qA47n">
+            <property role="TrG5h" value="Printer geeft de melding inkt is op" />
+          </node>
+          <node concept="wf7uK" id="3rbMb2ff2_s" role="wf7ot" />
+        </node>
+        <node concept="32OqiQ" id="3rbMb2ff2_$" role="32Oqj4">
+          <property role="TrG5h" value="De geprinte pagina geeft onduidelijke letters is waar" />
+          <node concept="qAkyR" id="3rbMb2ff2_K" role="qA47n">
+            <property role="TrG5h" value="De geprinte pagina geeft onduidelijke letters" />
+          </node>
+          <node concept="wf7uK" id="3rbMb2ff2_N" role="wf7ot" />
+        </node>
+        <node concept="32Oqjc" id="3rbMb2ff2_8" role="32Oqja">
+          <property role="TrG5h" value="Controleer de inkt" />
+        </node>
+        <node concept="weLWk" id="3rbMb2ff2_b" role="weLZX" />
       </node>
     </node>
     <node concept="341IrB" id="5EuS6MuAcrD" role="341IvS">
