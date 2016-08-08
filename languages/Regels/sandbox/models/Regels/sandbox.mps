@@ -10,7 +10,7 @@
   <registry>
     <language id="6d5fd526-1cea-4e31-ab59-ad955823700c" name="RegelTaal">
       <concept id="6655185614570502631" name="RegelTaal.structure.OperandReferentie" flags="ng" index="qA47D">
-        <reference id="6655185614570502632" name="refoperand" index="qA47A" />
+        <reference id="6655185614570502632" name="operand" index="qA47A" />
       </concept>
       <concept id="6655185614570434745" name="RegelTaal.structure.Operand" flags="ng" index="qAkyR" />
       <concept id="1763268480372800579" name="RegelTaal.structure.Moet" flags="ng" index="weLWk" />
@@ -49,7 +49,7 @@
   </registry>
   <node concept="342NBM" id="5EuS6MuA9kc">
     <property role="TrG5h" value="Beslissing1" />
-    <property role="3422Yz" value="Tabel" />
+    <property role="3422Yz" value="Regels" />
     <node concept="341IrB" id="5EuS6MuA9kd" role="341IvS">
       <property role="TrG5h" value="Printer problemen oplossen" />
       <node concept="32OqiR" id="5EuS6MuA3R9" role="341Irw">
