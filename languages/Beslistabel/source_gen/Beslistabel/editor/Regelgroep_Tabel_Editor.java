@@ -22,16 +22,13 @@ import jetbrains.mps.lang.editor.table.runtime.AbstractTableModel;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
-import jetbrains.mps.internal.collections.runtime.Sequence;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
-import jetbrains.mps.internal.collections.runtime.ITranslator2;
 import java.util.List;
 import java.util.ArrayList;
+import jetbrains.mps.internal.collections.runtime.Sequence;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import org.apache.log4j.Level;
 import org.jetbrains.mps.openapi.language.SAbstractConcept;
-import jetbrains.mps.internal.collections.runtime.IWhereFilter;
-import jetbrains.mps.internal.collections.runtime.ISelector;
 import jetbrains.mps.lang.editor.table.runtime.EditorCell_Table;
 import org.apache.log4j.Logger;
 import org.apache.log4j.LogManager;
@@ -112,12 +109,6 @@ public class Regelgroep_Tabel_Editor extends DefaultNodeEditor {
           }
           @Override
           public int getRowCount() {
-            Integer rcVoorwaarden = ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).count() + Sequence.fromIterable(SNodeOperations.ofConcept(ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels"))).translate(new ITranslator2<SNode, SNode>() {
-              public Iterable<SNode> translate(SNode it) {
-                return SLinkOperations.getChildren(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbaL, 0x7b09cf0db9d86bc9L, "voorwaarden"));
-              }
-            }), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, "RegelTaal.structure.Voorwaarde"))).count() + 1;
-
             Integer numberOfOperands;
             List<SNode> rcOperands = new ArrayList<SNode>();
             for (SNode regel : ListSequence.fromList(SLinkOperations.getChildren(node, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5a9ee06c9e98068bL, 0x5a9ee06c9e98068cL, "regels")))) {
@@ -173,8 +164,6 @@ public class Regelgroep_Tabel_Editor extends DefaultNodeEditor {
                 }
               }
 
-              // Het vullen van de tabel voor wat betreft de voorwaarden 
-
               // Het vullen van de tabel voor wat betreft de operanden 
               if (row > 0 && (row <= ListSequence.fromList(operands).count())) {
 
@@ -184,79 +173,39 @@ public class Regelgroep_Tabel_Editor extends DefaultNodeEditor {
                     LOG.warn("Referentie voorwaarde " + SPropertyOperations.getString(SLinkOperations.getTarget(voorwaardeReferentie, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, 0x7b09cf0db9d86bbeL, "voorwaarde")), MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name")));
                   }
                   ListSequence.fromList(referentievoorwaardenList).addElement(SLinkOperations.getTarget(voorwaardeReferentie, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, 0x7b09cf0db9d86bbeL, "voorwaarde")));
+                  // Betreft een referentievoorwaarde en een gewone operand 
+                  for (SNode operand : ListSequence.fromList(SNodeOperations.getNodeDescendants(SLinkOperations.getTarget(voorwaardeReferentie, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, 0x7b09cf0db9d86bbeL, "voorwaarde")), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c2b0b9L, "RegelTaal.structure.Operand"), false, new SAbstractConcept[]{}))) {
+                    if (operand == ListSequence.fromList(operands).getElement(row - 1)) {
+                      return SLinkOperations.getTarget(SLinkOperations.getTarget(voorwaardeReferentie, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, 0x7b09cf0db9d86bbeL, "voorwaarde")), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
+                    }
+                  }
+                  // Betreft een referentievoorwaarde en een gewone referentie operand 
+                  for (SNode operandref : ListSequence.fromList(SNodeOperations.getNodeDescendants(SLinkOperations.getTarget(voorwaardeReferentie, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, 0x7b09cf0db9d86bbeL, "voorwaarde")), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, "RegelTaal.structure.OperandReferentie"), false, new SAbstractConcept[]{}))) {
+                    if (SLinkOperations.getTarget(operandref, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, 0x5c5bf80e46c3b9e8L, "operand")) == ListSequence.fromList(operands).getElement(row - 1)) {
+                      return SLinkOperations.getTarget(SLinkOperations.getTarget(voorwaardeReferentie, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbdL, 0x7b09cf0db9d86bbeL, "voorwaarde")), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
+                    }
+                  }
                 }
-                // Betreft een referentievoorwaarde en een gewone operand 
-                if (ListSequence.fromList(referentievoorwaardenList).where(new IWhereFilter<SNode>() {
-                  public boolean accept(SNode it) {
-                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand")) != null);
-                  }
-                }).select(new ISelector<SNode, SNode>() {
-                  public SNode select(SNode it) {
-                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand"));
-                  }
-                }).contains(ListSequence.fromList(operands).getElement(row - 1))) {
-                  return SLinkOperations.getTarget(ListSequence.fromList(voorwaarden).getElement(row - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
-                }
-                // Betreft een referentievoorwaarde en een referentie operand 
-                if (Sequence.fromIterable(SNodeOperations.ofConcept(ListSequence.fromList(referentievoorwaardenList).where(new IWhereFilter<SNode>() {
-                  public boolean accept(SNode it) {
-                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand")) != null);
-                  }
-                }).select(new ISelector<SNode, SNode>() {
-                  public SNode select(SNode it) {
-                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand"));
-                  }
-                }), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, "RegelTaal.structure.OperandReferentie"))).where(new IWhereFilter<SNode>() {
-                  public boolean accept(SNode it) {
-                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, 0x5c5bf80e46c3b9e8L, "operand")) != null);
-                  }
-                }).select(new ISelector<SNode, SNode>() {
-                  public SNode select(SNode it) {
-                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, 0x5c5bf80e46c3b9e8L, "operand"));
-                  }
-                }).contains(ListSequence.fromList(operands).getElement(row - 1))) {
-                  return SLinkOperations.getTarget(ListSequence.fromList(voorwaarden).getElement(row - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
-                }
+
                 List<SNode> voorwaardenList = new ArrayList<SNode>();
                 for (SNode voorwaarde : ListSequence.fromList(SNodeOperations.getNodeDescendants(ListSequence.fromList(regels).getElement(column - 1), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, "RegelTaal.structure.Voorwaarde"), false, new SAbstractConcept[]{}))) {
                   if (LOG.isEnabledFor(Level.WARN)) {
                     LOG.warn("Voorwaarde " + SPropertyOperations.getString(voorwaarde, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name")));
                   }
                   ListSequence.fromList(voorwaardenList).addElement(voorwaarde);
+                  // Betreft een gewone voorwaarde en een gewone operand 
+                  for (SNode operand : ListSequence.fromList(SNodeOperations.getNodeDescendants(voorwaarde, MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c2b0b9L, "RegelTaal.structure.Operand"), false, new SAbstractConcept[]{}))) {
+                    if (operand == ListSequence.fromList(operands).getElement(row - 1)) {
+                      return SLinkOperations.getTarget(voorwaarde, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
+                    }
+                  }
+                  // Betreft een gewone voorwaarde en een referentie operand 
+                  for (SNode operandref : ListSequence.fromList(SNodeOperations.getNodeDescendants(voorwaarde, MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, "RegelTaal.structure.OperandReferentie"), false, new SAbstractConcept[]{}))) {
+                    if (SLinkOperations.getTarget(operandref, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, 0x5c5bf80e46c3b9e8L, "operand")) == ListSequence.fromList(operands).getElement(row - 1)) {
+                      return SLinkOperations.getTarget(voorwaarde, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
+                    }
+                  }
                 }
-                // Betreft een gewone voorwaarde en een gewone operand 
-                if (ListSequence.fromList(voorwaardenList).where(new IWhereFilter<SNode>() {
-                  public boolean accept(SNode it) {
-                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand")) != null);
-                  }
-                }).select(new ISelector<SNode, SNode>() {
-                  public SNode select(SNode it) {
-                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand"));
-                  }
-                }).contains(ListSequence.fromList(operands).getElement(row - 1))) {
-                  return SLinkOperations.getTarget(ListSequence.fromList(voorwaarden).getElement(row - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
-                }
-                // Betreft een gewone voorwaarde en een referentie operand 
-                if (Sequence.fromIterable(SNodeOperations.ofConcept(ListSequence.fromList(voorwaardenList).where(new IWhereFilter<SNode>() {
-                  public boolean accept(SNode it) {
-                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand")) != null);
-                  }
-                }).select(new ISelector<SNode, SNode>() {
-                  public SNode select(SNode it) {
-                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x5c5bf80e46c3b9d9L, "operand"));
-                  }
-                }), MetaAdapterFactory.getConcept(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, "RegelTaal.structure.OperandReferentie"))).where(new IWhereFilter<SNode>() {
-                  public boolean accept(SNode it) {
-                    return (SLinkOperations.getTarget(it, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, 0x5c5bf80e46c3b9e8L, "operand")) != null);
-                  }
-                }).select(new ISelector<SNode, SNode>() {
-                  public SNode select(SNode it) {
-                    return SLinkOperations.getTarget(it, MetaAdapterFactory.getReferenceLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x5c5bf80e46c3b9e7L, 0x5c5bf80e46c3b9e8L, "operand"));
-                  }
-                }).contains(ListSequence.fromList(operands).getElement(row - 1))) {
-                  return SLinkOperations.getTarget(ListSequence.fromList(voorwaarden).getElement(row - 1), MetaAdapterFactory.getContainmentLink(0x6d5fd5261cea4e31L, 0xab59ad955823700cL, 0x7b09cf0db9d86bbbL, 0x187863573844154aL, "operator"));
-                }
-
               }
             }
 

@@ -201,24 +201,24 @@
       <node concept="l2Vlx" id="5EuS6Mu_ypm" role="2iSdaV" />
       <node concept="3F1sOY" id="5LrY0T6KVBx" role="3EZMnx">
         <ref role="1NtTu8" to="iry:5LrY0T6KVBp" />
-        <node concept="pkWqt" id="5LrY0T6M5_c" role="pqm2j">
-          <node concept="3clFbS" id="5LrY0T6M5_d" role="2VODD2">
-            <node concept="3clFbF" id="5LrY0T6MRcA" role="3cqZAp">
-              <node concept="2OqwBi" id="5LrY0T6MRfj" role="3clFbG">
-                <node concept="pncrf" id="5LrY0T6MRc$" role="2Oq$k0" />
-                <node concept="2qgKlT" id="5LrY0T6MRHI" role="2OqNvi">
+        <node concept="pkWqt" id="6G_w3LZFGkP" role="pqm2j">
+          <node concept="3clFbS" id="6G_w3LZFGkQ" role="2VODD2">
+            <node concept="3clFbF" id="6G_w3LZFGrG" role="3cqZAp">
+              <node concept="2OqwBi" id="6G_w3LZFGup" role="3clFbG">
+                <node concept="pncrf" id="6G_w3LZFGrE" role="2Oq$k0" />
+                <node concept="2qgKlT" id="6G_w3LZFGDv" role="2OqNvi">
                   <ref role="37wK5l" to="d1hb:5LrY0T6M7Qn" resolve="SetEditorContext" />
-                  <node concept="2OqwBi" id="5LrY0T6MTgl" role="37wK5m">
-                    <node concept="1Q80Hx" id="5LrY0T6MTcn" role="2Oq$k0" />
-                    <node concept="liA8E" id="5LrY0T6MTm9" role="2OqNvi">
+                  <node concept="2OqwBi" id="6G_w3LZFGJ_" role="37wK5m">
+                    <node concept="1Q80Hx" id="6G_w3LZFGGH" role="2Oq$k0" />
+                    <node concept="liA8E" id="6G_w3LZFGOe" role="2OqNvi">
                       <ref role="37wK5l" to="cj4x:~EditorContext.getEditorComponent():jetbrains.mps.openapi.editor.EditorComponent" resolve="getEditorComponent" />
                     </node>
                   </node>
                 </node>
               </node>
             </node>
-            <node concept="3cpWs6" id="5LrY0T6M5PO" role="3cqZAp">
-              <node concept="3clFbT" id="5LrY0T6M5ST" role="3cqZAk">
+            <node concept="3cpWs6" id="6G_w3LZFGmX" role="3cqZAp">
+              <node concept="3clFbT" id="6G_w3LZFGpa" role="3cqZAk">
                 <property role="3clFbU" value="true" />
               </node>
             </node>
